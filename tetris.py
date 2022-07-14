@@ -3,6 +3,7 @@ import random
 
 pg.init()
 win = pg.display.set_mode((800, 800))
+pg.display.set_caption("Tetris")
 
 pg.font.init(), 
 my_font = pg.font.SysFont('Times New Roman', 30)
@@ -313,7 +314,6 @@ while run:
                     heldPiece = piece.id 
                     piece = currentPiece(old)
     
-    print(score)
     pg.display.flip()
     
 pg.quit()
