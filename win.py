@@ -13,6 +13,17 @@ class Win:
         self.height_offset = int(self.screen_height / 4)
         pg.font.init()
 
+    def update_window(self, game):
+        game.update_board()
+        game.get_ghost_cords()
+        self.win.fill((0, 0, 0))
+        self.draw_board(game.board)
+        self.draw_next_piece(game.next_piece)
+        self.draw_held_piece(game.held_piece)
+        self.draw_ghost_piece(game.ghost_piece)
+        self.draw_grid()
+        self.blit_text(game.score)
+
     def draw_grid(self):
         for x in range(0, self.columns * self.block_size, self.block_size):
             for y in range(self.height_offset, self.screen_height, self.block_size):
@@ -39,12 +50,12 @@ class Win:
                 self.win,
                 (0, 255, 255),
                 pg.Rect(
-                    (cord[1] * self.block_size) ,
+                    (cord[1] * self.block_size),
                     cord[0] * self.block_size + 200,
                     self.block_size,
                     self.block_size,
                 ),
-                width=5
+                width=5,
             )
 
     def draw_held_piece(self, held_piece):
@@ -71,6 +82,7 @@ class Win:
                     ),
                     1,
                 )
+
     def draw_next_piece(self, next_piece):
         x_offset = 425
         y_offset = 450
